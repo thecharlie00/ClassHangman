@@ -23,9 +23,11 @@ class GameActivity : AppCompatActivity() {
         binding.guessButton.setOnClickListener {
             val char = binding.guessLetterInput.text.getOrNull(0)
             if (char != null)
-                hangmanModelView.guessLetter(char)
+                hangmanModelView.guessLetter(char, binding.hagmanTextOuput, this)
             else
                 Toast.makeText(this, "You must submit a letter", Toast.LENGTH_SHORT).show()
+
+            binding.guessLetterInput.setText("")
         }
     }
 }
