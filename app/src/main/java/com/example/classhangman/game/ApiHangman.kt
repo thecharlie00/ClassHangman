@@ -1,4 +1,4 @@
-package com.example.classhangman
+package com.example.classhangman.game
 
 import retrofit2.Call
 import retrofit2.http.Body

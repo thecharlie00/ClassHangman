@@ -1,4 +1,4 @@
-package com.example.classhangman
+package com.example.classhangman.game
 
 import com.google.gson.annotations.SerializedName
 

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".GameActivity">
+    tools:context=".game.GameActivity">
 
     <TextView
         android:id="@+id/hagmanTextOuput"
@@ -18,6 +18,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="spread" />
+
+    <TextView
+        android:id="@+id/alphabet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="a, t, y"
+        app:layout_constraintEnd_toEndOf="@+id/hagmanTextOuput"
+        app:layout_constraintStart_toStartOf="@+id/hagmanTextOuput"
+        app:layout_constraintTop_toBottomOf="@+id/hagmanTextOuput" />
 
     <EditText
         android:id="@+id/guessLetterInput"
@@ -44,5 +54,15 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/guessLetterInput"
         app:layout_constraintTop_toTopOf="@+id/guessLetterInput" />
+
+    <Button
+        android:id="@+id/gotoRanking"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="Ranking"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
