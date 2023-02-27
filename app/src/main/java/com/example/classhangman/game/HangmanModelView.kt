@@ -3,6 +3,8 @@ package com.example.classhangman.game
 import android.os.CountDownTimer
 import android.widget.TextView
 import android.widget.Toast
+import com.example.classhangman.ranking.RankingViewModel
+import com.google.firebase.firestore.FirebaseFirestore
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -10,6 +12,8 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 class HangmanModelView(val countdownTextView: TextView) {
+
+
 
     val username = "gg class"
     var hangman: HangmanModel? = null
@@ -82,8 +86,7 @@ class HangmanModelView(val countdownTextView: TextView) {
 
                     // is game won?
                     if (hangman?.word?.contains("_") == false) {
-                        countdown.cancel()
-                        countdownTextView.text = "Congratulations!!"
+                        winGame()
                     }
 
 
@@ -111,8 +114,13 @@ class HangmanModelView(val countdownTextView: TextView) {
         })
     }
 
-    fun isGameWon(): Boolean {
-        return false
+    private fun winGame() {
+        countdown.cancel()
+        countdownTextView.text = "Congratulations!!"
+
+        val firebase = FirebaseFirestore.getInstance()
+        val collection = firebase.collection(RankingViewModel.RANKING_COLLECTION)
+        collection.document(username).update(RankingViewModel.PUNCTUATION_FIELD, getPunctuation())
     }
 
     fun getPunctuation(): Int {

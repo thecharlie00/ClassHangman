@@ -2,12 +2,15 @@ package com.example.classhangman.ranking
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.activity.viewModels
 import com.example.classhangman.databinding.ActivityGameBinding
 import com.example.classhangman.databinding.ActivityRankingBinding
 
 class RankingActivity : AppCompatActivity() {
     lateinit var binding: ActivityRankingBinding
     lateinit var adapter: RankingAdapter
+
+    private val rankingViewModel: RankingViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -17,6 +20,10 @@ class RankingActivity : AppCompatActivity() {
         adapter = RankingAdapter()
         binding.rankingList.adapter = adapter
 
-        adapter.updateRankingValues(hashMapOf("Alba" to 110, "Marta" to 40, "Sergi" to 50))
+        rankingViewModel.ranking.observe(this) {
+            adapter.updateRankingValues(it)
+        }
+
+        rankingViewModel.loadRanking()
     }
 }
