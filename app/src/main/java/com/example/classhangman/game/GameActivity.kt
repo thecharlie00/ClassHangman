@@ -18,7 +18,7 @@ class GameActivity : AppCompatActivity() {
         binding = ActivityGameBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        hangmanModelView = HangmanModelView()
+        hangmanModelView = HangmanModelView(binding.countdown)
         hangmanModelView.getNewWord(binding.hagmanTextOuput)
 
 
