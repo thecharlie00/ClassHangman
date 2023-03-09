@@ -47,4 +47,9 @@ dependencies {
     // Retrofit
     implementation "com.squareup.retrofit2:retrofit:2.9.0" // base retrofit
     implementation "com.squareup.retrofit2:converter-gson:2.9.0" // json + retrofit
+
+    // VM
+    implementation 'androidx.fragment:fragment-ktx:1.5.5'
+    implementation 'androidx.activity:activity-ktx:1.6.1'
+    implementation "androidx.lifecycle:lifecycle-extensions:2.2.0"
 }
