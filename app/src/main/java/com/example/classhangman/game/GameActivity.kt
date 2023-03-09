@@ -13,7 +13,9 @@ import com.example.classhangman.ranking.RankingActivity
 class GameActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityGameBinding
+
     val hangmanModelView by viewModels<HangmanModelView>()
+    lateinit var animator: GameAnimationsBinder
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,12 +25,15 @@ class GameActivity : AppCompatActivity() {
         binding = ActivityGameBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        animator = GameAnimationsBinder(binding).startAnimations()
 
         hangmanModelView.hangman.observe(this) {
             binding.hagmanTextOuput.text = it.word.replace("_", "_ ")
 
-//            if (it?.correct == false)
-//                Toast.makeText(this, "This letter is not in the word!", Toast.LENGTH_SHORT).show()
+            if (it?.correct == false) {
+                animator.failAnimation()
+//                animator.loseGame()
+            }
         }
 
         hangmanModelView.alphabet.observe(this) { alphabet ->

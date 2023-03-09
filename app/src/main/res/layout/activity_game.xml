@@ -487,11 +487,12 @@
         android:id="@+id/fantasma1"
         android:layout_width="126dp"
         android:layout_height="234dp"
-        app:layout_constraintBottom_toBottomOf="@+id/jailbar"
+        android:layout_marginBottom="132dp"
+        app:layout_constraintBottom_toBottomOf="@+id/jailbars"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.94"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/jailbar"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/fantasma1" />
 
@@ -499,10 +500,10 @@
         android:id="@+id/fantasma2"
         android:layout_width="103dp"
         android:layout_height="222dp"
-        app:layout_constraintBottom_toBottomOf="@+id/jailbar"
+        app:layout_constraintBottom_toTopOf="@+id/view2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/jailbar"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.84000003"
         app:srcCompat="@drawable/fantasma2" />
 
@@ -510,120 +511,132 @@
         android:id="@+id/fantasma3"
         android:layout_width="121dp"
         android:layout_height="238dp"
-        app:layout_constraintBottom_toBottomOf="@+id/jailbar"
+        app:layout_constraintBottom_toTopOf="@+id/view2"
         app:layout_constraintEnd_toEndOf="@+id/jail"
         app:layout_constraintHorizontal_bias="0.03"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/jailbar"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.18"
         app:srcCompat="@drawable/fantasma3" />
 
-    <ImageView
-        android:id="@+id/jailbar"
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/jailbars"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="@+id/jail"
-        app:layout_constraintEnd_toStartOf="@+id/jailbar2"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintHorizontal_chainStyle="spread_inside"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@drawable/jailbar_1" />
-
-    <ImageView
-        android:id="@+id/jailbar2"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="@+id/jail"
-        app:layout_constraintEnd_toStartOf="@+id/jailbar3"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/jailbar"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@drawable/jailbar_1" />
-
-    <ImageView
-        android:id="@+id/jailbar3"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="@+id/jail"
-        app:layout_constraintEnd_toStartOf="@+id/jailbar4"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/jailbar2"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@drawable/jailbar_1" />
-
-    <ImageView
-        android:id="@+id/jailbar4"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="@+id/jail"
-        app:layout_constraintEnd_toStartOf="@+id/jailbar5"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/jailbar3"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@drawable/jailbar_1" />
-
-    <ImageView
-        android:id="@+id/jailbar5"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="@+id/jail"
-        app:layout_constraintEnd_toStartOf="@+id/jailbar6"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/jailbar4"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@drawable/jailbar_1" />
-
-    <ImageView
-        android:id="@+id/jailbar6"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="@+id/jail"
-        app:layout_constraintEnd_toStartOf="@+id/jailbar7"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/jailbar5"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@drawable/jailbar_1" />
-
-    <ImageView
-        android:id="@+id/jailbar7"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="@+id/jail"
-        app:layout_constraintEnd_toStartOf="@+id/jailbar8"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/jailbar6"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@drawable/jailbar_1" />
-
-    <ImageView
-        android:id="@+id/jailbar8"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="@+id/jail"
+        app:layout_constraintBottom_toTopOf="@+id/view2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/jailbar7"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@drawable/jailbar_1" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/jailbar1"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/jailbar2"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0"
+            app:srcCompat="@drawable/jailbar_1" />
+
+        <ImageView
+            android:id="@+id/jailbar2"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/jailbar3"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/jailbar1"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0"
+            app:srcCompat="@drawable/jailbar_1" />
+
+        <ImageView
+            android:id="@+id/jailbar3"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/jailbar4"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/jailbar2"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0"
+            app:srcCompat="@drawable/jailbar_1" />
+
+        <ImageView
+            android:id="@+id/jailbar4"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/jailbar5"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/jailbar3"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0"
+            app:srcCompat="@drawable/jailbar_1" />
+
+        <ImageView
+            android:id="@+id/jailbar5"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/jailbar6"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/jailbar4"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0"
+            app:srcCompat="@drawable/jailbar_1" />
+
+        <ImageView
+            android:id="@+id/jailbar6"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/jailbar7"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/jailbar5"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0"
+            app:srcCompat="@drawable/jailbar_1" />
+
+        <ImageView
+            android:id="@+id/jailbar7"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/jailbar8"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/jailbar6"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0"
+            app:srcCompat="@drawable/jailbar_1" />
+
+        <ImageView
+            android:id="@+id/jailbar8"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/jailbar7"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0"
+            app:srcCompat="@drawable/jailbar_1" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     <TextView
         android:id="@+id/alphabet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginBottom="3dp"
         android:text="a, t, y"
         android:textColor="#960000"
-        app:layout_constraintBottom_toBottomOf="@+id/jailbar"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/view2"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:visibility="visible" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
