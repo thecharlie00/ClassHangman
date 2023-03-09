@@ -48,6 +48,7 @@ class HangmanModelView : ViewModel() {
         request.getNewWord("es").enqueue(object : Callback<HangmanModel> {
             override fun onResponse(call: Call<HangmanModel>, response: Response<HangmanModel>) {
                 hangman.postValue(response.body() ?: return)
+                countdown.start()
             }
 
             override fun onFailure(call: Call<HangmanModel>, t: Throwable) {

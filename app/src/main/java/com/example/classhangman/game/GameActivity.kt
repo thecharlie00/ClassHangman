@@ -55,7 +55,7 @@ class GameActivity : AppCompatActivity() {
         }
 
         hangmanModelView.remainingTime.observe(this) {
-            binding.countdown.text = "$it +  s"
+            binding.countdown.text = "$it  s"
         }
 
         hangmanModelView.getNewWord()
