@@ -2,9 +2,11 @@ package com.example.classhangman.game
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.ImageButton
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.children
 import com.example.classhangman.databinding.ActivityGameBinding
 import com.example.classhangman.ranking.RankingActivity
 
@@ -16,6 +18,8 @@ class GameActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        supportActionBar?.hide()
+
         binding = ActivityGameBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -23,32 +27,38 @@ class GameActivity : AppCompatActivity() {
         hangmanModelView.hangman.observe(this) {
             binding.hagmanTextOuput.text = it.word.replace("_", "_ ")
 
-            if (it?.correct == false)
-                Toast.makeText(this, "This letter is not in the word!", Toast.LENGTH_SHORT).show()
+//            if (it?.correct == false)
+//                Toast.makeText(this, "This letter is not in the word!", Toast.LENGTH_SHORT).show()
         }
 
-        hangmanModelView.alphabet.observe(this) {
+        hangmanModelView.alphabet.observe(this) { alphabet ->
             var usedLetters = ""
-            it.forEach { (char, isUsed) ->
+            alphabet.forEach { (char, isUsed) ->
                 if (isUsed)
                     usedLetters += "$char, "
             }
             binding.alphabet.text = usedLetters
+
+            // Lock keyboard
+            binding.keyboard.children.forEach { key ->
+                val letter = resources.getResourceName(key.id).lowercase().last()
+                if (alphabet[letter] == true && key is ImageButton) {
+                    key.isEnabled = false
+                    key.setColorFilter(0x81989898.toInt())
+                }
+            }
         }
 
         hangmanModelView.getNewWord()
 
+        binding.keyboard.children.forEach { key ->
+            key.setOnClickListener {
+                val letter = resources.getResourceName(it.id).last()
 
-        binding.guessButton.setOnClickListener {
-            val letter = binding.guessLetterInput.text.getOrNull(0)
-
-            if (letter != null) {
                 if (!hangmanModelView.guessLetter(letter))
-                    Toast.makeText(this, "You already used letter $letter", Toast.LENGTH_SHORT).show()
-            } else
-                Toast.makeText(this, "You must submit a letter", Toast.LENGTH_SHORT).show()
-
-            binding.guessLetterInput.setText("")
+                    Toast.makeText(this, "You already used letter $letter", Toast.LENGTH_SHORT)
+                        .show()
+            }
         }
 
         binding.gotoRanking.setOnClickListener {
