@@ -11,6 +11,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
         android:text="User 1"
+        android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
