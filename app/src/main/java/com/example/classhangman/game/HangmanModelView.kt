@@ -1,8 +1,10 @@
 package com.example.classhangman.game
 
 import android.os.CountDownTimer
-import android.widget.TextView
-import android.widget.Toast
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import com.example.classhangman.ranking.RankingViewModel
+import com.google.firebase.firestore.FirebaseFirestore
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -22,29 +24,24 @@ class HangmanModelView : ViewModel() {
         }
     }
 
+    var remainingTime = MutableLiveData<Int>().apply {
+        postValue(60)
+    }
+
+    private val countdown = object : CountDownTimer(60 * 1000, 250) {
+        override fun onTick(millisUntilFinished: Long) {
+            remainingTime.postValue((millisUntilFinished / 1000).toInt())
+        }
+
+        override fun onFinish() {
+            // TODO
+        }
+    }
+
     private val outside = Retrofit.Builder()
         .baseUrl("http://hangman.enti.cat:5002")
         .addConverterFactory(GsonConverterFactory.create())
         .build()
-
-    val alphabet = hashMapOf<Char, Boolean>().also {
-        ('a'..'z').forEach { c ->
-            it[c] = false
-        }
-    }
-
-    var remainingTime = 60
-
-    val countdown = object : CountDownTimer(60 * 1000, 250) {
-        override fun onTick(millisUntilFinished: Long) {
-            countdownTextView.text = "${millisUntilFinished / 1000} s"
-            remainingTime = (millisUntilFinished / 1000).toInt()
-        }
-
-        override fun onFinish() {
-            countdownTextView.text = "Game over!"
-        }
-    }
 
     fun getNewWord() {
         val request = outside.create(ApiHangman::class.java)
@@ -54,6 +51,7 @@ class HangmanModelView : ViewModel() {
             }
 
             override fun onFailure(call: Call<HangmanModel>, t: Throwable) {
+                // TODO
             }
         })
     }
@@ -83,21 +81,25 @@ class HangmanModelView : ViewModel() {
             }
 
             override fun onFailure(call: Call<HangmanModel>, t: Throwable) {
+                // TODO
             }
         })
 
         return true
     }
+
+    // TODO
     private fun winGame() {
         countdown.cancel()
-        countdownTextView.text = "Congratulations!!"
 
         val firebase = FirebaseFirestore.getInstance()
         val collection = firebase.collection(RankingViewModel.RANKING_COLLECTION)
-        collection.document(username).update(RankingViewModel.PUNCTUATION_FIELD, getPunctuation())
+        collection.document("unknown user")
+            .update(RankingViewModel.PUNCTUATION_FIELD, getPunctuation())
     }
 
-    fun getPunctuation(): Int {
-        return (hangman?.word?.length ?: 0) * 10 - (hangman?.incorrectGuesses ?: 0) * 5 + remainingTime
+    private fun getPunctuation(): Int {
+        return (hangman.value?.word?.length ?: 0) * 10 - (hangman.value?.incorrectGuesses
+            ?: 0) * 5 + (remainingTime.value ?: 0)
     }
 }

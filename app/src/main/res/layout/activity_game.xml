@@ -639,4 +639,18 @@
         app:layout_constraintStart_toStartOf="parent"
         tools:visibility="visible" />
 
+    <TextView
+        android:id="@+id/countdown"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:background="#82878C"
+        android:padding="5dp"
+        android:text="60 s"
+        android:textColor="#6340A5"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/view2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

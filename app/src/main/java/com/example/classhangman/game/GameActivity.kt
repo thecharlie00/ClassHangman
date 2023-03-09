@@ -54,6 +54,10 @@ class GameActivity : AppCompatActivity() {
             }
         }
 
+        hangmanModelView.remainingTime.observe(this) {
+            binding.countdown.text = "$it +  s"
+        }
+
         hangmanModelView.getNewWord()
 
         binding.keyboard.children.forEach { key ->
