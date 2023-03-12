@@ -21,7 +21,7 @@ class GameAnimationsBinder(binding: ActivityGameBinding) {
 
     private fun ghostAnimation(ghost: ImageView) {
         ObjectAnimator.ofFloat(
-            ghost, "y",
+            ghost, "translationY",
             ghost.y + 30f,
         ).apply {
             repeatCount = ValueAnimator.INFINITE
