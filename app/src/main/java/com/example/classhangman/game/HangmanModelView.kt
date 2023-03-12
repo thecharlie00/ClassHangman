@@ -13,7 +13,13 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class HangmanModelView : ViewModel() {
 
-    var hangman = MutableLiveData<HangmanModel>()
+    enum class GameState { PLAYING, WON, LOST }
+
+    val gameSate = MutableLiveData<GameState>().also {
+        it.postValue(GameState.PLAYING)
+    }
+
+    val hangman = MutableLiveData<HangmanModel>()
 
     val alphabet = MutableLiveData<HashMap<Char, Boolean>>().also { alphaCreation ->
         hashMapOf<Char, Boolean>().also {
@@ -28,13 +34,15 @@ class HangmanModelView : ViewModel() {
         postValue(60)
     }
 
+    private var fails = 8
+
     private val countdown = object : CountDownTimer(60 * 1000, 250) {
         override fun onTick(millisUntilFinished: Long) {
             remainingTime.postValue((millisUntilFinished / 1000).toInt())
         }
 
         override fun onFinish() {
-            // TODO
+            gameSate.postValue(GameState.LOST)
         }
     }
 
@@ -79,17 +87,25 @@ class HangmanModelView : ViewModel() {
                     set(formattedLetter, true)
                     alphabet.postValue(this)
                 }
+
+                if (hangman.value?.word?.contains("_") == false)
+                    winGame()
+                else if (hangman.value?.correct == false) {
+                    if (--fails <= 0) {
+                        countdown.cancel()
+                        gameSate.postValue(GameState.LOST)
+                    }
+                }
             }
 
             override fun onFailure(call: Call<HangmanModel>, t: Throwable) {
-                // TODO
+                ++fails
             }
         })
 
         return true
     }
 
-    // TODO
     private fun winGame() {
         countdown.cancel()
 
@@ -97,6 +113,8 @@ class HangmanModelView : ViewModel() {
         val collection = firebase.collection(RankingViewModel.RANKING_COLLECTION)
         collection.document("unknown user")
             .update(RankingViewModel.PUNCTUATION_FIELD, getPunctuation())
+
+        gameSate.postValue(GameState.WON)
     }
 
     private fun getPunctuation(): Int {

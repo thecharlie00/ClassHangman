@@ -3,13 +3,17 @@ package com.example.classhangman.game
 import android.animation.ObjectAnimator
 import android.animation.ValueAnimator
 import android.widget.ImageView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.animation.doOnEnd
 import androidx.core.view.children
+import androidx.core.view.updateLayoutParams
 import com.example.classhangman.databinding.ActivityGameBinding
+
 
 class GameAnimationsBinder(binding: ActivityGameBinding) {
 
-    var jailbars = binding.jailbars.children.toList() as ArrayList
+    val jailbars = binding.jailbars.children.toList() as ArrayList
+    val allJailbars = binding.jailbars.children.toList()
     val ghosts = listOf(binding.fantasma1, binding.fantasma2, binding.fantasma3)
 
     fun startAnimations(): GameAnimationsBinder {
@@ -30,24 +34,32 @@ class GameAnimationsBinder(binding: ActivityGameBinding) {
         }
     }
 
+    var lockAnimation = false // avoid two ghosts attacking at the same time
     fun failAnimation() {
+
         // Ghost attack
-        val ghost = ghosts.random()
-        ObjectAnimator.ofFloat(
-            ghost, "scaleX",
-            3f,
-        ).apply {
-            repeatCount = ValueAnimator.RESTART
-            repeatMode = ValueAnimator.REVERSE
-            start()
-        }
-        ObjectAnimator.ofFloat(
-            ghost, "scaleY",
-            3f,
-        ).apply {
-            repeatCount = ValueAnimator.RESTART
-            repeatMode = ValueAnimator.REVERSE
-            start()
+        if (!lockAnimation) {
+            lockAnimation = true
+
+            val ghost = ghosts.random()
+            ObjectAnimator.ofFloat(
+                ghost, "scaleX",
+                3f,
+            ).apply {
+                repeatCount = ValueAnimator.RESTART
+                repeatMode = ValueAnimator.REVERSE
+                start()
+            }.doOnEnd {
+                lockAnimation = false
+            }
+            ObjectAnimator.ofFloat(
+                ghost, "scaleY",
+                3f,
+            ).apply {
+                repeatCount = ValueAnimator.RESTART
+                repeatMode = ValueAnimator.REVERSE
+                start()
+            }
         }
 
         // jailbars animations
@@ -69,14 +81,31 @@ class GameAnimationsBinder(binding: ActivityGameBinding) {
                 duration = 2000
                 start()
             }
-
-            if (jailbars.isEmpty())
-                loseGame(ghost)
         }
     }
 
-    private fun loseGame(ghost: ImageView) {
+    fun winGame() {
+        allJailbars.forEach {
+            if (it !in jailbars) {
+                it.alpha = 1f
+                ObjectAnimator.ofFloat(
+                    it, "scaleX",
+                    0f, 1f
+                ).apply {
+                    duration = 1000
+                    start()
+                }
+            }
+        }
+    }
+
+    fun loseGame() {
+        val ghost = ghosts.random()
         ghost.clearAnimation()
+        ghost.updateLayoutParams<ConstraintLayout.LayoutParams> {
+            horizontalBias = 0.5f
+            verticalBias = 1f
+        }
         ObjectAnimator.ofFloat(
             ghost, "scaleX",
             3f,
@@ -85,12 +114,6 @@ class GameAnimationsBinder(binding: ActivityGameBinding) {
             ghost, "scaleY",
             3f,
         ).apply {
-//            doOnEnd {
-//                ObjectAnimator.ofFloat(
-//                    ghost, "y",
-//                    ghost.y + 300f,
-//                ).start()
-//            }
             start()
         }
     }
