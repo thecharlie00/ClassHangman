@@ -89,7 +89,7 @@ class HangmanModelView : ViewModel() {
                     alphabet.postValue(this)
                 }
 
-                if (newHang.word.contains("_") == false)
+                if (!newHang.word.contains("_"))
                     winGame()
                 else if (newHang.correct == false) {
                     if (--fails <= 0) {
