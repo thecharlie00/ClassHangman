@@ -435,7 +435,7 @@
         android:background="#6B9CDA"
         android:paddingStart="10dp"
         android:paddingEnd="10dp"
-        android:text="Hello World!"
+        android:text="Loading..."
         android:textColor="#2C405A"
         android:textSize="34sp"
         android:textStyle="bold"

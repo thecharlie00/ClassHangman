@@ -81,16 +81,17 @@ class HangmanModelView : ViewModel() {
         ).enqueue(object : Callback<HangmanModel> {
 
             override fun onResponse(call: Call<HangmanModel>, response: Response<HangmanModel>) {
-                hangman.postValue(response.body() ?: return)
+                val newHang = response.body() ?: return
+                hangman.postValue(newHang)
 
                 alphabet.value?.apply {
                     set(formattedLetter, true)
                     alphabet.postValue(this)
                 }
 
-                if (hangman.value?.word?.contains("_") == false)
+                if (newHang.word.contains("_") == false)
                     winGame()
-                else if (hangman.value?.correct == false) {
+                else if (newHang.correct == false) {
                     if (--fails <= 0) {
                         countdown.cancel()
                         gameSate.postValue(GameState.LOST)
@@ -106,13 +107,29 @@ class HangmanModelView : ViewModel() {
         return true
     }
 
+    fun getSolution() {
+        val request = outside.create(ApiHangman::class.java)
+        request.getSolution(hangman.value?.token ?: return)
+            .enqueue(object : Callback<HangmanModel> {
+                override fun onResponse(
+                    call: Call<HangmanModel>,
+                    response: Response<HangmanModel>
+                ) {
+                    hangman.postValue(response.body() ?: return)
+                }
+
+                override fun onFailure(call: Call<HangmanModel>, t: Throwable) {
+                }
+            })
+    }
+
     private fun winGame() {
         countdown.cancel()
 
-        val firebase = FirebaseFirestore.getInstance()
-        val collection = firebase.collection(RankingViewModel.RANKING_COLLECTION)
-        collection.document("unknown user")
-            .update(RankingViewModel.PUNCTUATION_FIELD, getPunctuation())
+//        val firebase = FirebaseFirestore.getInstance()
+//        val collection = firebase.collection(RankingViewModel.RANKING_COLLECTION)
+//        collection.document("unknown user")
+//            .update(RankingViewModel.PUNCTUATION_FIELD, getPunctuation())
 
         gameSate.postValue(GameState.WON)
     }

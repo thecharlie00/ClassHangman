@@ -3,6 +3,7 @@ package com.example.classhangman.game
 import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageButton
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -27,11 +28,15 @@ class GameActivity : AppCompatActivity() {
 
         animator = GameAnimationsBinder(binding).startAnimations()
 
-        hangmanModelView.hangman.observe(this) {
+        hangmanModelView.hangman.observe(this) { it ->
             binding.hagmanTextOuput.text = it.word.replace("_", "_ ")
 
             if (it?.correct == false)
                 animator.failAnimation()
+
+            it?.solution?.let { solution ->
+                Toast.makeText(this, solution, Toast.LENGTH_SHORT).show()
+            }
         }
 
         hangmanModelView.alphabet.observe(this) { alphabet ->
@@ -76,10 +81,11 @@ class GameActivity : AppCompatActivity() {
                     .setMessage("Play again?")
             }
 
-            builder.setPositiveButton("Yes!") { _, _ ->
+            builder.setPositiveButton("Of course!") { _, _ ->
                 finish()
                 startActivity(Intent(this, GameActivity::class.java))
             }
+            builder.setNegativeButton("No") { _, _ -> }
 
             builder.create().show()
         }
@@ -100,6 +106,11 @@ class GameActivity : AppCompatActivity() {
         binding.gotoRanking.setOnClickListener {
             val intent = Intent(this, RankingActivity::class.java)
             startActivity(intent)
+        }
+
+        binding.countdown.setOnLongClickListener {
+            hangmanModelView.getSolution()
+            true
         }
     }
 }

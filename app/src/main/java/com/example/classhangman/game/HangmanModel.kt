@@ -10,5 +10,6 @@ data class HangmanModel(
     val correct: Boolean? = null, // Only filled with guess
 
     @SerializedName("hangman")
-    val word: String = ""
+    val word: String = "",
+    val solution: String? = null
 )
