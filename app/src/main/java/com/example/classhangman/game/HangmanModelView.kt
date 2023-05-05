@@ -126,10 +126,10 @@ class HangmanModelView : ViewModel() {
     private fun winGame() {
         countdown.cancel()
 
-//        val firebase = FirebaseFirestore.getInstance()
-//        val collection = firebase.collection(RankingViewModel.RANKING_COLLECTION)
-//        collection.document("unknown user")
-//            .update(RankingViewModel.PUNCTUATION_FIELD, getPunctuation())
+        val firebase = FirebaseFirestore.getInstance()
+        val collection = firebase.collection(RankingViewModel.RANKING_COLLECTION)
+        collection.document("unknown user")
+           .update(RankingViewModel.PUNCTUATION_FIELD, getPunctuation())
 
         gameSate.postValue(GameState.WON)
     }

@@ -13,21 +13,35 @@ class RankingViewModel : ViewModel() {
         const val PUNCTUATION_FIELD = "punctuation"
     }
 
-    val firebase = FirebaseFirestore.getInstance()
+
     val ranking = MutableLiveData<HashMap<String, Int>>()
+    val shownRanking = MutableLiveData<HashMap<String, Int>>()
 
     fun loadRanking() {
-        val collection = firebase.collection(RANKING_COLLECTION)
-        collection.get().addOnCompleteListener { collectionData ->
-            val result = HashMap<String, Int>()
-            val data = collectionData.result
 
-            data.documents.forEach {
-//                result["Marta"] = 10
-                result[it.id] = it.get(PUNCTUATION_FIELD).toString().toIntOrNull() ?: 0
-            }
 
-            ranking.postValue(result)
-        }
+        val result = HashMap<String, Int>()
+        result["Marta"] = 10
+        result["Júlia"] = 20
+        result["Aniol"] = 30
+        result["David"] = 40
+        result["Núria"] = 100
+
+
+
+        shownRanking.value = HashMap()
+        shownRanking.value?.putAll(result)
+
+        // Invoquem observadors
+        shownRanking.postValue(shownRanking.value)
+        ranking.postValue(result)
+    }
+
+    fun preformSearch(text: String) {
+        val filteredResults = ranking.value?.filter {
+            return@filter it.key.lowercase().contains(text.lowercase())
+        } ?: return
+
+        shownRanking.postValue(filteredResults as HashMap<String, Int>)
     }
 }

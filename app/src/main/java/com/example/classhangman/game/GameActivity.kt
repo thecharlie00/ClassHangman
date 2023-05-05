@@ -9,15 +9,18 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.children
 import com.example.classhangman.databinding.ActivityGameBinding
+import com.example.classhangman.menu.Login
+import com.example.classhangman.menu.Register
 import com.example.classhangman.ranking.RankingActivity
+import com.google.firebase.FirebaseApp
 
 class GameActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityGameBinding
 
-    val hangmanModelView by viewModels<HangmanModelView>()
+    private val hangmanModelView by viewModels<HangmanModelView>()
     lateinit var animator: GameAnimationsBinder
-
+    lateinit var mediaGame: GameSoundBinder
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -27,12 +30,16 @@ class GameActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         animator = GameAnimationsBinder(binding).startAnimations()
+        mediaGame = GameSoundBinder(binding)
+
+        mediaGame.initMedia(this)
 
         hangmanModelView.hangman.observe(this) { it ->
             binding.hagmanTextOuput.text = it.word.replace("_", "_ ")
 
-            if (it?.correct == false)
-                animator.failAnimation()
+            //if (it?.correct == false)
+                //animator.failAnimation()
+                //mediaGame.errorSound()
 
             it?.solution?.let { solution ->
                 Toast.makeText(this, solution, Toast.LENGTH_SHORT).show()
@@ -47,7 +54,7 @@ class GameActivity : AppCompatActivity() {
             }
             binding.alphabet.text = usedLetters
 
-            // Lock keyboard
+
             binding.keyboard.children.forEach { key ->
                 val letter = resources.getResourceName(key.id).lowercase().last()
                 if (alphabet[letter] == true && key is ImageButton) {
@@ -61,7 +68,6 @@ class GameActivity : AppCompatActivity() {
             if (it == HangmanModelView.GameState.PLAYING)
                 return@observe
 
-            // Lock all keys
             binding.keyboard.children.forEach { key ->
                 if (key is ImageButton) {
                     key.isEnabled = false
@@ -72,11 +78,12 @@ class GameActivity : AppCompatActivity() {
             val builder: AlertDialog.Builder = AlertDialog.Builder(this)
 
             if (it == HangmanModelView.GameState.LOST) {
-                animator.loseGame()
+                mediaGame.stopBackgroundMusic()
                 builder.setTitle("You lose :(")
                     .setMessage("Retry?")
             } else if (it == HangmanModelView.GameState.WON) {
                 animator.winGame()
+                mediaGame.stopBackgroundMusic()
                 builder.setTitle("You are save")
                     .setMessage("Play again?")
             }
@@ -84,6 +91,7 @@ class GameActivity : AppCompatActivity() {
             builder.setPositiveButton("Of course!") { _, _ ->
                 finish()
                 startActivity(Intent(this, GameActivity::class.java))
+                mediaGame.clickSound()
             }
             builder.setNegativeButton("No") { _, _ -> }
 
@@ -104,8 +112,9 @@ class GameActivity : AppCompatActivity() {
         }
 
         binding.gotoRanking.setOnClickListener {
-            val intent = Intent(this, RankingActivity::class.java)
+            val intent = Intent(this, Login::class.java)
             startActivity(intent)
+            mediaGame.clickSound()
         }
 
         binding.countdown.setOnLongClickListener {

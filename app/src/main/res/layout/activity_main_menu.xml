@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:ads="http://schemas.android.com/apk/lib/com.google.ads"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".menu.MainMenu">
+
+    <ImageView
+        android:id="@+id/backgroundMenu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleX="2"
+        android:scaleY="3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/bg_red" />
+
+    <TextView
+        android:id="@+id/menuTitle"
+        android:layout_width="244dp"
+        android:layout_height="76dp"
+        android:layout_marginTop="32dp"
+        android:fontFamily="@font/avenger"
+        android:text="MENU"
+        android:textAlignment="center"
+        android:textColor="#08FF00"
+        android:textSize="48sp"
+        app:layout_constraintBottom_toTopOf="@+id/backgroundMenu"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.369" />
+
+    <Button
+        android:id="@+id/rankingBtn"
+        android:layout_width="140dp"
+        android:layout_height="49dp"
+        android:fontFamily="@font/avenger"
+        android:text="RANKING"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/backgroundMenu"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/menuTitle"
+        app:layout_constraintVertical_bias="0.557" />
+
+    <Button
+        android:id="@+id/quitBtn"
+        android:layout_width="140dp"
+        android:layout_height="49dp"
+        android:fontFamily="@font/avenger"
+        android:text="QUIT"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/backgroundMenu"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/menuTitle"
+        app:layout_constraintVertical_bias="0.826" />
+
+    <Button
+        android:id="@+id/playBtn2"
+        android:layout_width="140dp"
+        android:layout_height="49dp"
+        android:fontFamily="@font/avenger"
+        android:text="PLAY"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/backgroundMenu"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/menuTitle"
+        app:layout_constraintVertical_bias="0.31" />
+
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adView"
+        android:layout_width="315dp"
+        android:layout_height="152dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="188dp"
+        app:adSize="BANNER"
+        app:adUnitId="adView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/backgroundMenu"
+        app:layout_constraintVertical_bias="1.0" />
+</androidx.constraintlayout.widget.ConstraintLayout>

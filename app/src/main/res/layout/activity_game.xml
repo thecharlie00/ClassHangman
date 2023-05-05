@@ -10,7 +10,7 @@
         android:id="@+id/view2"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="#8080CFE0"
+        android:background="@drawable/bg_blue"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -430,9 +430,10 @@
 
     <TextView
         android:id="@+id/hagmanTextOuput"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="#6B9CDA"
+        android:layout_width="194dp"
+        android:layout_height="37dp"
+        android:background="#42E430"
+        android:fontFamily="@font/avenger"
         android:paddingStart="10dp"
         android:paddingEnd="10dp"
         android:text="Loading..."
@@ -445,30 +446,34 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/view2" />
 
+
     <Button
         android:id="@+id/gotoRanking"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="318dp"
+        android:fontFamily="@font/avenger"
         android:text="Ranking"
-        android:visibility="gone"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/view2"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
         tools:visibility="visible" />
 
     <View
         android:id="@+id/view1"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="#D6D6D6"
+        android:background="@drawable/bg_red"
         app:layout_constraintBottom_toTopOf="@+id/view2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="spread" />
-
 
     <TextView
         android:id="@+id/alphabet"
@@ -484,18 +489,114 @@
 
     <TextView
         android:id="@+id/countdown"
-        android:layout_width="100dp"
-        android:layout_height="50dp"
-        android:layout_marginBottom="1dp"
-        android:background="#808080"
+        android:layout_width="88dp"
+        android:layout_height="43dp"
+        android:layout_marginBottom="8dp"
+        android:background="#E13232"
+        android:fontFamily="@font/avenger"
         android:padding="5dp"
         android:text="60 s"
         android:textAlignment="center"
-        android:textColor="#6340A5"
+        android:textColor="#FAFAFA"
         android:textSize="34sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/view2"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/jarrones"
+        android:layout_width="330dp"
+        android:layout_height="264dp"
+        app:layout_constraintBottom_toTopOf="@+id/countdown"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
+
+        <ImageView
+            android:id="@+id/jarron14"
+            android:layout_width="74dp"
+            android:layout_height="107dp"
+            android:layout_marginStart="96dp"
+            android:layout_marginTop="152dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/jarra" />
+
+        <ImageView
+            android:id="@+id/jarron12"
+            android:layout_width="74dp"
+            android:layout_height="107dp"
+            android:layout_marginStart="172dp"
+            android:layout_marginTop="152dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/jarra" />
+
+        <ImageView
+            android:id="@+id/jarron13"
+            android:layout_width="74dp"
+            android:layout_height="107dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="152dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/jarra" />
+
+        <ImageView
+            android:id="@+id/jarron15"
+            android:layout_width="74dp"
+            android:layout_height="107dp"
+            android:layout_marginTop="152dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.975"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/jarra" />
+
+        <ImageView
+            android:id="@+id/jarron11"
+            android:layout_width="74dp"
+            android:layout_height="107dp"
+            android:layout_marginStart="172dp"
+            android:layout_marginTop="36dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/jarra" />
+
+        <ImageView
+            android:id="@+id/jarron"
+            android:layout_width="74dp"
+            android:layout_height="107dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="36dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/jarra" />
+
+        <ImageView
+            android:id="@+id/jarron9"
+            android:layout_width="74dp"
+            android:layout_height="107dp"
+            android:layout_marginStart="88dp"
+            android:layout_marginTop="36dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/jarra" />
+
+        <ImageView
+            android:id="@+id/jarron10"
+            android:layout_width="74dp"
+            android:layout_height="107dp"
+            android:layout_marginTop="36dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.975"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/jarra" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

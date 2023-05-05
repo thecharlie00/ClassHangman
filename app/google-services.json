@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "732079784364",
-    "project_id": "viod2223-hangman",
-    "storage_bucket": "viod2223-hangman.appspot.com"
+    "project_number": "1068812981230",
+    "project_id": "hangman-39fec",
+    "storage_bucket": "hangman-39fec.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:732079784364:android:a55c95be326ce32023ba09",
+        "mobilesdk_app_id": "1:1068812981230:android:cf19a9975de0fcb24ef4ff",
         "android_client_info": {
           "package_name": "com.example.classhangman"
         }
       },
       "oauth_client": [
         {
-          "client_id": "732079784364-s5jgbovejegi2u0fa8nubi70rg7bjqqo.apps.googleusercontent.com",
+          "client_id": "1068812981230-1644mbnld2u4m8gnk1ca42ah8tmvj13p.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCw9vTDOtubbUNSxnBGPqYAwKHZMZsAiuY"
+          "current_key": "AIzaSyBMHpGQiGkEBlxS7Sk9fJyPin82YV1K-d0"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "732079784364-s5jgbovejegi2u0fa8nubi70rg7bjqqo.apps.googleusercontent.com",
+              "client_id": "1068812981230-1644mbnld2u4m8gnk1ca42ah8tmvj13p.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
