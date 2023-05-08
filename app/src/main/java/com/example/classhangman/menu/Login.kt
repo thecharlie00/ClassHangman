@@ -9,6 +9,7 @@ import android.widget.Toast
 import com.example.classhangman.databinding.ActivityLoginBinding
 import com.example.classhangman.databinding.ActivityRegisterBinding
 import com.example.classhangman.game.GameActivity
+import com.google.android.gms.ads.MobileAds
 
 
 class Login : AppCompatActivity() {
@@ -22,7 +23,7 @@ class Login : AppCompatActivity() {
         setContentView(R.layout.activity_login)
 
         auth = FirebaseAuth.getInstance()
-
+        MobileAds.initialize(this) {}
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 

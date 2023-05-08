@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.children
 import com.example.classhangman.databinding.ActivityGameBinding
 import com.example.classhangman.menu.Login
+import com.example.classhangman.menu.MainMenu
 import com.example.classhangman.menu.Register
 import com.example.classhangman.ranking.RankingActivity
 import com.google.firebase.FirebaseApp
@@ -112,7 +113,7 @@ class GameActivity : AppCompatActivity() {
         }
 
         binding.gotoRanking.setOnClickListener {
-            val intent = Intent(this, Login::class.java)
+            val intent = Intent(this, MainMenu::class.java)
             startActivity(intent)
             mediaGame.clickSound()
         }

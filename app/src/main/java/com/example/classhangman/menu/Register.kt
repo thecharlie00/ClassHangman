@@ -17,9 +17,12 @@ class Register : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
-         auth = FirebaseAuth.getInstance()
+
+        auth = FirebaseAuth.getInstance()
+
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
         binding.done.setOnClickListener{
             val email = binding.emailText.text.toString()
             val password = binding.passwordText.text.toString()
