@@ -38,9 +38,9 @@ class GameActivity : AppCompatActivity() {
         hangmanModelView.hangman.observe(this) { it ->
             binding.hagmanTextOuput.text = it.word.replace("_", "_ ")
 
-            //if (it?.correct == false)
-                //animator.failAnimation()
-                //mediaGame.errorSound()
+            if (it?.correct == false)
+                animator.failAnimation()
+                mediaGame.errorSound()
 
             it?.solution?.let { solution ->
                 Toast.makeText(this, solution, Toast.LENGTH_SHORT).show()

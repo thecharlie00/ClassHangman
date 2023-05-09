@@ -2,6 +2,8 @@ package com.example.classhangman.game
 
 import android.animation.ObjectAnimator
 import android.animation.ValueAnimator
+import android.annotation.SuppressLint
+import android.graphics.Color
 import androidx.core.animation.doOnEnd
 import androidx.core.view.children
 import com.example.classhangman.databinding.ActivityGameBinding
@@ -16,22 +18,28 @@ class GameAnimationsBinder(binding: ActivityGameBinding) {
         return this
     }
 
+    @SuppressLint("ObjectAnimatorBinding")
     fun failAnimation() {
 
-        val jarrr = jarss.randomOrNull() ?: return
-        jarss.remove(jarrr)
+        val jarrrr = jarss.randomOrNull() ?: return
+        jarss.remove(jarrrr)
         ObjectAnimator.ofFloat(
-            jarrr, "scaleX",
-            0.5f, 2f, 0.5f, 4f,
+            jarrrr, "scaleX",
+            0.5f, 1f, 1.5f, 2f,
         ).apply {
-            duration = 1500
-            repeatCount = ValueAnimator.RESTART
-            repeatMode = ValueAnimator.REVERSE
+            duration = 500
             start()
         }.doOnEnd {
+            ObjectAnimator.ofInt(
+                jarrrr, "Color",
+                Color.WHITE
+            ).apply {
+                duration = 2000
+                start()
+            }
             ObjectAnimator.ofFloat(
-                jarrr, "alpha",
-                0f
+                jarrrr, "alpha",
+            0f
             ).apply {
                 duration = 2000
                 start()
